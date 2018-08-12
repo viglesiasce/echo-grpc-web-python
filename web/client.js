@@ -5,7 +5,7 @@ const {EchoApp} = require('./echoapp.js');
 const grpc = {};
 grpc.web = require('grpc-web');
 
-var echoService = new EchoServiceClient('http://35.230.84.125:5000', null, null);
+var echoService = new EchoServiceClient('http://echo-proxy.dev.vicnastea.io:5000', null, null);
 
 var echoApp = new EchoApp(
 echoService,
