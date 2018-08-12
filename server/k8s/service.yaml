@@ -9,4 +9,5 @@ spec:
     targetPort: 50051
   selector:
     run: server
+  clusterIP: "None"
   type: ClusterIP

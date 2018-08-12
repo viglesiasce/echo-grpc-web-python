@@ -36,8 +36,8 @@ static_resources:
           - name: envoy.router
   clusters:
   - name: echo_service
-    connect_timeout: 0.25s
-    type: logical_dns
+    connect_timeout: 0.2s
+    type: strict_dns
     http2_protocol_options: {}
-    lb_policy: round_robin
+    lb_policy: least_request
     hosts: [{ socket_address: { address: server, port_value: 50051 }}]
