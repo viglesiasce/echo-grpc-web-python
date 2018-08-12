@@ -3,15 +3,20 @@ import time
 import logging
 
 import grpc
+from prometheus_client import start_http_server, Summary
 
 import echo_pb2
 import echo_pb2_grpc
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
+# Create a metric to track time spent and requests made.
+ECHO_REQUEST_TIME = Summary('echo_request_processing_seconds', 'Time spent processing Echo request')
+STREAMING_ECHO_REQUEST_TIME = Summary('streaming_echo_request_processing_seconds', 'Time spent processing StreamingEcho request')
 
 class Echo(echo_pb2_grpc.EchoServiceServicer):
 
+    @ECHO_REQUEST_TIME.time()
     def Echo(self, request, context):
         logging.debug("Processing Echo: " + str(request))
         return echo_pb2.EchoResponse(message=request.message)
@@ -21,6 +26,7 @@ class Echo(echo_pb2_grpc.EchoServiceServicer):
         context.set_code(grpc.StatusCode.ABORTED)
         return echo_pb2.EchoResponse(message=request.message)
     
+    @STREAMING_ECHO_REQUEST_TIME.time()
     def ServerStreamingEcho(self, request, context):
         logging.debug("Processing ServerStreamingEcho: " + str(request))
         for _ in range(request.message_count):
@@ -37,6 +43,8 @@ def serve():
     
     server.add_insecure_port('[::]:' + str(port))
     server.start()
+    start_http_server(9090)
+
     try:
         while True:
             time.sleep(_ONE_DAY_IN_SECONDS)
