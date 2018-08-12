@@ -20,7 +20,10 @@ RUN apt-get update && apt-get install -y \
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
   apt-get install -y nodejs
 
-COPY grpc-web/ /src/grpc-web/
+RUN git clone --depth 1 https://github.com/grpc/grpc-web /src/grpc-web/
+
+RUN cd /src/grpc-web && \
+    ./scripts/init_submodules.sh
 
 RUN cd /src/grpc-web/third_party/grpc && \
   make && make install
