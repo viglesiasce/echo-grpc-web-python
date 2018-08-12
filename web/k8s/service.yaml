@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+spec:
+  ports:
+  - nodePort: 31957
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    run: web
+  type: LoadBalancer
+  loadBalancerIP: "35.197.41.116"
