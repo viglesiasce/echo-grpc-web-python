@@ -48,7 +48,7 @@ echoapp.EchoApp.prototype.echo = function(msg) {
   unaryRequest.setMessage(msg);
   var self = this;
   var call = this.echoService.echo(unaryRequest,
-                                   {"custom-header-1": "value1"},
+                                   {"message": msg},
                                    function(err, response) {
     if (err) {
       echoapp.EchoApp.addRightMessage('Error code: '+err.code+' "'+
