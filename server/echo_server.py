@@ -38,7 +38,6 @@ def GetTracingMetadata(context):
             metadata_dict[metadatum.key] = metadatum.value
             logging.debug("Adding metadata headers to echo: " + str(metadatum))
             metadata_list.append(metadata_tuples[i])
-    #context.set_trailing_metadata(tuple(metadata_list))
     logging.debug("Metadata list: " + str(metadata_list))
     return metadata_dict       
 
@@ -60,9 +59,6 @@ class Echo(echo_pb2_grpc.EchoServiceServicer):
                 logging.debug("Processing Echo: " + str(request))
                 span.add_attribute("message", request.message)
                 time.sleep(0.2)
-                with tracer.span(name='echo-inner') as inner:
-                    inner.add_attribute("delay", "0.2")
-                    time.sleep(0.2)
         return echo_pb2.EchoResponse(message=request.message)
     
     def EchoAbort(self, request, context):

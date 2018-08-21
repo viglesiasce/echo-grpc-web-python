@@ -99,7 +99,7 @@ echoapp.EchoApp.prototype.repeatEcho = function(msg, count) {
 
   var stream = this.echoService.serverStreamingEcho(
     streamRequest,
-    {"custom-header-1": "value1"});
+    {"message": msg});
   var self = this;
   stream.on('data', function(response) {
     echoapp.EchoApp.addRightMessage(response.getMessage());
