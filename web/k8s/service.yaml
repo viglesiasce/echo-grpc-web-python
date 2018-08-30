@@ -4,8 +4,7 @@ metadata:
   name: web
 spec:
   ports:
-  - nodePort: 31957
-    port: 80
+  - port: 80
     protocol: TCP
     targetPort: 80
   selector:
