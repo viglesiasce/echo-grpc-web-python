@@ -34,7 +34,7 @@ enpoint, which translates the HTTP request to gRPC before sending them to the ba
     cd ..
     ```
 
-1. Create the gRPC stubs for the server:
+1. (Optional, only needed if you update the proto) Create the gRPC stubs for the server:
 
     ```
     python -m grpc_tools.protoc -I ../protos/ --python_out=. --grpc_python_out=. ../protos/echo.proto
@@ -76,9 +76,9 @@ enpoint, which translates the HTTP request to gRPC before sending them to the ba
     chmod +x protoc-gen-grpc-web
     ```
 
-1. [Install protoc version 3.5+](https://github.com/protocolbuffers/protobuf#protocol-compiler-installation)
+1. (Optional, only needed if you update the proto) [Install protoc version 3.5+](https://github.com/protocolbuffers/protobuf#protocol-compiler-installation)
 
-1. Compile the gRPC stubs for the web client:
+1. (Optional, only needed if you update the proto) Compile the gRPC stubs for the web client:
 
     ```
     protoc -I=../protos ../protos/echo.proto   --plugin=protoc-gen-grpc-web=`pwd`/protoc-gen-grpc-web   --grpc-web_out=import_style=commonjs,mode=grpcwebtext,out=echo_grpc_pb.js:.   --js_out=import_style=commonjs:.
