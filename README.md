@@ -51,6 +51,7 @@ enpoint, which translates the HTTP request to gRPC before sending them to the ba
 1. Download envoy:
 
     ```
+    cd envoy
     wget https://echo-grpc-web-python.storage.googleapis.com/envoy
     chmod +x envoy
     ```
@@ -58,7 +59,6 @@ enpoint, which translates the HTTP request to gRPC before sending them to the ba
 1. Start envoy with the provided config file:
 
     ```
-    cd envoy
     ./envoy -c local.yaml
     ```
 
