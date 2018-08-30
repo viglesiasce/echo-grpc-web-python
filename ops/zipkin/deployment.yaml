@@ -23,16 +23,16 @@ spec:
         run: zipkin
     spec:
       containers:
-      - image: openzipkin/zipkin
+      - image:  openzipkin/zipkin-gcp
         imagePullPolicy: Always
         name: zipkin
-        # env:
-        # - name: STORAGE_TYPE
-        #   value: stackdriver
-        # - name: STACKDRIVER_PROJECT_ID
-        #   value: vic-goog
-        # - name: JAVA_OPTS
-        #   value: -Dlogging.level.zipkin2.translation.stackdriver=DEBUG
+        env:
+        - name: STORAGE_TYPE
+          value: stackdriver
+        - name: STACKDRIVER_PROJECT_ID
+          value: vic-goog
+        - name: JAVA_OPTS
+          value: -Dlogging.level.zipkin2.translation.stackdriver=DEBUG
         ports:
         - containerPort: 9411
           protocol: TCP
