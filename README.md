@@ -48,12 +48,17 @@ enpoint, which translates the HTTP request to gRPC before sending them to the ba
 
 ## Starting the envoy Proxy
 
-1. Install Docker
+1. Download envoy:
+
+    ```
+    wget https://echo-grpc-web-python.storage.googleapis.com/envoy
+    chmod +x envoy
+    ```
 
 1. Start envoy with the provided config file:
 
     ```
-    ./envoy -c config.yaml
+    ./envoy -c local.yaml
     ```
 
 ## Serving the web frontend
