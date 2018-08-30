@@ -1,3 +1,7 @@
 grpcio-tools
 googleapis-common-protos
 prometheus_client
+google-api-python-client
+google-cloud-trace
+#opencensus
+py_zipkin

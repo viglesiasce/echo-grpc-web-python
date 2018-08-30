@@ -1,7 +1,5 @@
 FROM ubuntu:16.04
 
-ARG MAKEFLAGS=-j8
-
 RUN apt-get update && apt-get install -y \
   autoconf \
   automake \

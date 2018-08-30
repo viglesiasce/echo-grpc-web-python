@@ -8,12 +8,10 @@ build:
   - imageName: gcr.io/vic-goog/echo-server
     docker:
       dockerfilePath: server/Dockerfile
-  - imageName: gcr.io/vic-goog/echo-envoy
-    docker:
-      dockerfilePath: envoy/Dockerfile
 deploy:
   kubectl:
     manifests:
     - ./web/k8s/*
     - ./server/k8s/*
     - ./envoy/k8s/*
+    - ./ops/zipkin/*
